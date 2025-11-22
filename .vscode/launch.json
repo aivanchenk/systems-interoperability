@@ -5,13 +5,13 @@
    "version": "0.2.0",
    "configurations": [
         {
-            "name": "Farm",
+            "name": "Farm.Grpc",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build-Farm",
-            "program": "${workspaceFolder}/Farm/bin/Debug/net9.0/Farm.dll",
+            "preLaunchTask": "build-Farm.Grpc",
+            "program": "${workspaceFolder}/Farm.Grpc/bin/Debug/net9.0/Farm.Grpc.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/Farm",
+            "cwd": "${workspaceFolder}/Farm.Grpc",
             "console": "externalTerminal",
             "stopAtEntry": false
         },
@@ -23,6 +23,16 @@
             "program": "${workspaceFolder}/Food.Rest/bin/Debug/net9.0/Food.Rest.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Food.Rest",
+            "console": "externalTerminal",
+            "stopAtEntry": false
+        },
+        { "name": "Farm.RestAdapter",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-Farm.RestAdapter",
+            "program": "${workspaceFolder}/Farm.RestAdapter/bin/Debug/net9.0/Farm.RestAdapter.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Farm.RestAdapter",
             "console": "externalTerminal",
             "stopAtEntry": false
         },

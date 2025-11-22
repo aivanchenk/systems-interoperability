@@ -2,12 +2,12 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build-Farm",
+            "label": "build-Farm.Grpc",
             "command": "dotnet",
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Farm/Farm.csproj",
+                "${workspaceFolder}/Farm.Grpc/Farm.Grpc.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -22,6 +22,18 @@
                 "${workspaceFolder}/Food.Rest/Food.Rest.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-Farm.RestAdapter",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Farm.RestAdapter/Farm.RestAdapter.csproj",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary"    
             ],
             "problemMatcher": "$msCompile"
         },
