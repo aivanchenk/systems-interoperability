@@ -1,0 +1,41 @@
+{
+   // Use IntelliSense to find out which attributes exist for C# debugging
+   // Use hover for the description of the existing attributes
+   // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+   "version": "0.2.0",
+   "configurations": [
+        {
+            "name": "Farm",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-Farm",
+            "program": "${workspaceFolder}/Farm/bin/Debug/net9.0/Farm.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Farm",
+            "console": "externalTerminal",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Food.Rest",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-Food.Rest",
+            "program": "${workspaceFolder}/Food.Rest/bin/Debug/net9.0/Food.Rest.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Food.Rest",
+            "console": "externalTerminal",
+            "stopAtEntry": false
+        },
+        {
+            "name": "Water.RbbitMQ",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-Water.RbbitMQ",
+            "program": "${workspaceFolder}/Water.RbbitMQ/bin/Debug/net9.0/Water.RbbitMQ.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Water.RbbitMQ",
+            "console": "externalTerminal",
+            "stopAtEntry": false
+        }
+    ]
+}

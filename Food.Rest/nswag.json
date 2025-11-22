@@ -1,0 +1,19 @@
+﻿{
+	"runtime": "Net90",
+	"documentGenerator": {
+		"fromDocument": {
+			"url": "http://localhost:5100/swagger/v1/swagger.json",
+			"output": null
+		}
+	},
+
+	"codeGenerators": {
+		"openApiToCSharpClient": {
+			"classname" : "FarmClient",
+			"namespace" : "Services",
+			"output" : "FarmClient.cs",
+
+			"generateSyncMethods": true
+		}
+	}
+}

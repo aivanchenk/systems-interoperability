@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "Services";
+package Services;
+
+// Descriptor of submission result
+message SubmissionResult {
+  bool isAccepted = 1;
+  string failReason = 2;
+}
+
+// Request message used for SubmitFood and SubmitWater
+message SubmitRequest {
+  double amount = 1;
+}
+
+// Farm service - clients submit resources (food, water)
+service Farm {
+  rpc SubmitFood  (SubmitRequest) returns (SubmissionResult);
+  rpc SubmitWater (SubmitRequest) returns (SubmissionResult);
+}
