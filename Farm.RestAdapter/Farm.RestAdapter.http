@@ -1,0 +1,6 @@
+@Farm.RestAdapter_HostAddress = http://localhost:5258
+
+GET {{Farm.RestAdapter_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

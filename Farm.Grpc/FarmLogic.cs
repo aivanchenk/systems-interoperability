@@ -15,7 +15,7 @@ public class SubmissionResult
     /// <summary>
     /// If pass submission has failed, indicates fail reason.
     /// </summary>
-    public string FailReason { get; set; }
+    public string? FailReason { get; set; }
 }
 
 /// <summary>
