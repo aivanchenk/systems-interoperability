@@ -7,12 +7,12 @@ public interface IFarmService
 	/// </summary>
 	/// <param name="amount">Amount of food submitted.</param>
 	/// <returns>Submit result descriptor.</returns>
-    SubmissionResult SubmitFood(int amount);
+    SubmissionResult SubmitFood(double amount);
 
     /// <summary>
     /// Try submitting Water resource.
     /// </summary>
     /// <param name="amount">Amount of water submitted.</param>
     /// <returns>Submit result descriptor.</returns>
-    SubmissionResult SubmitWater(int amount);
+    SubmissionResult SubmitWater(double amount);
 }

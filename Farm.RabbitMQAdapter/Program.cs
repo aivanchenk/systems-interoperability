@@ -86,7 +86,7 @@ public class Adapter
         rmqChann.ExchangeDeclare(exchange: ExchangeName, type: ExchangeType.Direct);
         rmqChann.QueueDeclare(
             queue: ServerQueueName,
-            durable: false,
+            durable: true,
             exclusive: false,
             autoDelete: false,
             arguments: null
@@ -133,7 +133,7 @@ public class Adapter
             return;
         }
 
-        log.Info($"RabbitMQ → Adapter: Received '{request.Action}' request");
+        log.Info($"RabbitMQ to Adapter: Received '{request.Action}' request");
 
         Services.SubmissionResult result;
 
@@ -185,7 +185,7 @@ public class Adapter
         var requestData = JsonConvert.DeserializeObject<dynamic>(data);
         double amount = (double)requestData.amount;
 
-        log.Info($"Adapter → gRPC: Submitting {amount} food");
+        log.Info($"Adapter to gRPC: Submitting {amount} food");
 
         var grpcRequest = new Services.SubmitRequest { Amount = amount };
         var grpcResponse = await grpcClient.SubmitFoodAsync(grpcRequest);
@@ -196,7 +196,7 @@ public class Adapter
             FailReason = grpcResponse.FailReason
         };
 
-        log.Info($"gRPC → Adapter: Food submission result: Accepted={result.IsAccepted}");
+        log.Info($"gRPC to Adapter: Food submission result: Accepted={result.IsAccepted}");
 
         return result;
     }
@@ -209,7 +209,7 @@ public class Adapter
         var requestData = JsonConvert.DeserializeObject<dynamic>(data);
         double amount = (double)requestData.amount;
 
-        log.Info($"Adapter → gRPC: Submitting {amount} water");
+        log.Info($"Adapter to gRPC: Submitting {amount} water");
 
         var grpcRequest = new Services.SubmitRequest { Amount = amount };
         var grpcResponse = await grpcClient.SubmitWaterAsync(grpcRequest);
@@ -220,7 +220,7 @@ public class Adapter
             FailReason = grpcResponse.FailReason
         };
 
-        log.Info($"gRPC → Adapter: Water submission result: Accepted={result.IsAccepted}");
+        log.Info($"gRPC to Adapter: Water submission result: Accepted={result.IsAccepted}");
 
         return result;
     }
@@ -248,7 +248,7 @@ public class Adapter
             body: responseBody
         );
 
-        log.Info($"Adapter → RabbitMQ: Sent '{response.Action}' response");
+        log.Info($"Adapter to RabbitMQ: Sent '{response.Action}' response");
     }
 
     /// <summary>

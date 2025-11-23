@@ -63,7 +63,7 @@ class Client
 					double producedWater = Math.Round(rnd.NextDouble() * 6.0 - 1.0, 1);
 					pendingWater += producedWater;
 
-					var result = farmClient.SubmitWater((int)Math.Round(pendingWater));
+					var result = farmClient.SubmitWater(pendingWater);
 
 					if (result.IsAccepted)
 					{

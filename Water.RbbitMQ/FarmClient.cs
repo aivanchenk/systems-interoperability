@@ -43,12 +43,12 @@ class FarmClient : IFarmService
 	/// <summary>
 	/// Service client ID.
 	/// </summary>
-	public String ClientId {get;}
+	public String ClientId { get; }
 
 	/// <summary>
 	/// Name of the client queue.
 	/// </summary>
-	private String ClientQueueName {get;}
+	private String ClientQueueName { get; }
 
 
 	/// <summary>
@@ -100,9 +100,10 @@ class FarmClient : IFarmService
 		string methodName,
 		Func<String> requestDataProvider,
 		Func<String, RESULT> resultDataExtractor
-	) {
+	)
+	{
 		//validate inputs
-		if( methodName == null )
+		if (methodName == null)
 			throw new ArgumentException("Argument 'methodName' is null.");
 
 		//declare result storage
@@ -127,7 +128,7 @@ class FarmClient : IFarmService
 		//result data extractor set? set-up receiver for response message
 		string consumerTag = null;
 
-		if( resultDataExtractor != null )
+		if (resultDataExtractor != null)
 		{
 			//ensure contents of variables set in main thread, are loadable by receiver thread
 			Thread.MemoryBarrier();
@@ -135,15 +136,16 @@ class FarmClient : IFarmService
 			//create response message consumer
 			var consumer = new EventingBasicConsumer(rmqChann);
 			consumer.Received +=
-				(channel, delivery) => {
+				(channel, delivery) =>
+				{
 					//ensure contents of variables set in main thread are loaded into this thread
 					Thread.MemoryBarrier();
 
 					//prevent overwriting of result, check if the expected message is received
-					if( !isResultReady && (delivery.BasicProperties.CorrelationId == requestProps.CorrelationId) )
+					if (!isResultReady && (delivery.BasicProperties.CorrelationId == requestProps.CorrelationId))
 					{
 						var response = JsonConvert.DeserializeObject<RPCMessage>(Encoding.UTF8.GetString(delivery.Body.ToArray()));
-						if( response.Action == $"{methodName}Response" )
+						if (response.Action == $"{methodName}Response")
 						{
 							//extract the result
 							result = resultDataExtractor(response.Data);
@@ -168,14 +170,14 @@ class FarmClient : IFarmService
 
 		//send request
 		rmqChann.BasicPublish(
-			exchange : ExchangeName,
-			routingKey : ServerQueueName,
-			basicProperties : requestProps,
+			exchange: ExchangeName,
+			routingKey: ServerQueueName,
+			basicProperties: requestProps,
 			body: Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(request))
 		);
 
 		//result data extractor set? await for response message
-		if( resultDataExtractor != null )
+		if (resultDataExtractor != null)
 		{
 			//wait for the result to be ready
 			resultReadySignal.WaitOne();
@@ -187,7 +189,7 @@ class FarmClient : IFarmService
 			rmqChann.BasicCancel(consumerTag);
 
 			//
-			return result;		
+			return result;
 		}
 
 		//we did not wait for response, return default value of whatever is expected
@@ -199,12 +201,12 @@ class FarmClient : IFarmService
 	/// </summary>
 	/// <param name="amount">Amount of food submitted.</param>
 	/// <returns>Submit result descriptor.</returns>
-	public SubmissionResult SubmitFood(int amount)
+	public SubmissionResult SubmitFood(double amount)
 	{
 		var result =
 			Call(
 				"SubmitFood",
-				() => JsonConvert.SerializeObject(new {amount = amount}),
+				() => JsonConvert.SerializeObject(new { amount = amount }),
 				(data) => JsonConvert.DeserializeObject<SubmissionResult>(data)
 			);
 		return result;
@@ -215,12 +217,12 @@ class FarmClient : IFarmService
 	/// </summary>
 	/// <param name="amount">Amount of water submitted.</param>
 	/// <returns>Submit result descriptor.</returns>
-	public SubmissionResult SubmitWater(int amount)
+	public SubmissionResult SubmitWater(double amount)
 	{
 		var result =
 			Call(
 				"SubmitWater",
-				() => JsonConvert.SerializeObject(new {amount = amount}),
+				() => JsonConvert.SerializeObject(new { amount = amount }),
 				(data) => JsonConvert.DeserializeObject<SubmissionResult>(data)
 			);
 		return result;
