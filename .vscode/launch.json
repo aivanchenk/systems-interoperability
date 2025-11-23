@@ -46,6 +46,17 @@
             "cwd": "${workspaceFolder}/Water.RbbitMQ",
             "console": "externalTerminal",
             "stopAtEntry": false
+        },
+        {
+            "name": "Farm.RabbitMQAdapter",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-Farm.RabbitMQAdapter",
+            "program": "${workspaceFolder}/Farm.RabbitMQAdapter/bin/Debug/net9.0/Farm.RabbitMQAdapter.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/Farm.RabbitMQAdapter",
+            "console": "externalTerminal",
+            "stopAtEntry": false
         }
     ]
 }
