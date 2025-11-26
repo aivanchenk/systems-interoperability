@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farm.Grpc", "Farm.Grpc\Farm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Food.Rest", "Food.Rest\Food.Rest.csproj", "{54D08DC2-C2AA-9875-E3CF-3DF4BA5485CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Water.RbbitMQ", "Water.RabbitMQ\Water.RbbitMQ.csproj", "{3D1F0A1E-3455-7A31-D323-42DBFDCEA243}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Water.RbbitMQ", "Water.RbbitMQ\Water.RbbitMQ.csproj", "{3D1F0A1E-3455-7A31-D323-42DBFDCEA243}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
